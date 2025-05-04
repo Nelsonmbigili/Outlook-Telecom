@@ -93,14 +93,14 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # === TABS FOR MODELS ===
-tab4, tab5, tab6, tab7 = st.tabs(["KNN", "Decision Tree", "PyCaret", "Mlflow"])
+tab1, tab4, tab5, tab6, tab7 = st.tabs(["Logistic Regression", "KNN", "Decision Tree", "PyCaret", "Mlflow"])
 
-# # === TAB 1: Logistic Regression ===
-# with tab1:
-#     st.header("Logistic Regression")
-#     if st.button("Train Logistic Regression"):
-#         model = LogisticRegression()
-#         train_and_evaluate_model(model, X_train, X_test, y_train, y_test, "Logistic Regression", scale=True)
+# === TAB 1: Logistic Regression ===
+with tab1:
+    st.header("Logistic Regression")
+    if st.button("Train Logistic Regression"):
+        model = LogisticRegression()
+        train_and_evaluate_model(model, X_train, X_test, y_train, y_test, "Logistic Regression", scale=True)
 
 # # === TAB 2: Random Forest ===
 # with tab2:
