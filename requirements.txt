@@ -1,0 +1,12 @@
+streamlit
+Pillow
+pandas==1.5.2
+numpy==1.26.4
+streamlit_option_menu
+mlflow==2.22.0
+dagshub==0.5.9
+matplotlib==3.7.5
+seaborn==0.13.2
+scikit-learn==1.4.2
+xgboost==3.0.0
+plotly==5.24.1

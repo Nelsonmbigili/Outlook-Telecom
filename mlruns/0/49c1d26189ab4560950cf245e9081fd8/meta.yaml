@@ -1,0 +1,15 @@
+artifact_uri: file:///workspaces/CountryWise_DataLab/mlruns/0/49c1d26189ab4560950cf245e9081fd8/artifacts
+end_time: 1746319440252
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 49c1d26189ab4560950cf245e9081fd8
+run_name: wistful-newt-561
+run_uuid: 49c1d26189ab4560950cf245e9081fd8
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1746319434807
+status: 3
+tags: []
+user_id: vscode
