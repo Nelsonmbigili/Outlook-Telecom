@@ -44,4 +44,4 @@ with st.spinner('Loading page...'):
     for name, email in team_members.items():
         st.write(f"- **{name}** ({email})")
 
-    st.success("Made with ❤️ =>  Dive into the data, discover insights, and keep learning .")
+    st.success("Dive into the data, discover insights, and keep learning .")
