@@ -23,7 +23,7 @@ dataset_cleaned = dataset.dropna(subset=['Gender', 'Churn Category', 'Tenure in 
 # Horizontal navigation for pages
 selected_page = option_menu(
     menu_title=None, 
-    options=["Demographics", "Services"],
+    options=["Demographics", "Services", "Financial Trends"],
     orientation="horizontal",
     icons=['house', 'person', 'bar-chart'],
     default_index=0
@@ -172,4 +172,90 @@ if selected_page == "Services":
         'xanchor': 'center'
     },
         )
+    st.plotly_chart(fig3, use_container_width=True)
+# Page 3: Financial Trends and Customer Lifetime
+if selected_page == "Financial Trends":
+    st.subheader(":violet[Financial Trends]")
+
+    import numpy as np
+    import pandas as pd
+    import plotly.express as px
+
+    # -------------------------
+    # Setup financial data
+    # -------------------------
+    financial_df = dataset_cleaned.copy()
+    financial_df['Revenue'] = financial_df['Monthly Charge'] * financial_df['Tenure in Months']
+    financial_df['Churned'] = financial_df['Churn Category'].apply(lambda x: 0 if x == "No Churn" else 1)
+
+
+    st.subheader(":violet[1. Revenue Lost by Churn Category]")
+
+    churned = financial_df[financial_df["Churn Category"] != "No Churn"]
+    churn_loss = churned.groupby("Churn Category")["Revenue"].sum().reset_index().sort_values(by="Revenue", ascending=False)
+
+    fig1 = px.bar(
+        churn_loss,
+        x="Churn Category",
+        y="Revenue",
+        color="Churn Category",
+        title="Total Revenue Lost by Churn Reason",
+        text_auto='.2s'
+    )
+    fig1.update_layout(
+        yaxis_title="Lost Revenue (USD)",
+        yaxis_tickprefix="$",
+        showlegend=False
+    )
+    st.plotly_chart(fig1, use_container_width=True)
+
+    st.subheader(":violet[2. Churn Rate by Churn Category]")
+
+
+    churn_only = financial_df[financial_df["Churn Category"] != "No Churn"]
+
+    churn_cats = churn_only["Churn Category"].value_counts(normalize=True).reset_index()
+    churn_cats.columns = ["Churn Category", "Churn Rate"]
+    churn_cats["Churn Rate (%)"] = churn_cats["Churn Rate"] * 100
+
+    fig2 = px.bar(
+        churn_cats,
+        x="Churn Category",
+        y="Churn Rate (%)",
+        text="Churn Rate (%)",
+        color="Churn Category",
+        title="Churn Breakdown by Category"
+    )
+    fig2.update_traces(texttemplate='%{text:.2f}%', textposition='outside')
+    fig2.update_layout(showlegend=False)
+    st.plotly_chart(fig2, use_container_width=True)
+
+    # -------------------------
+    # 3. Average Revenue by Service Used
+    # -------------------------
+    st.subheader(":violet[3. Average Revenue by Service Used]")
+
+    service_columns = [
+        "Phone Service", "Internet Service", "Online Security", "Online Backup",
+        "Device Protection Plan", "Premium Tech Support", "Streaming TV",
+        "Streaming Movies", "Streaming Music", "Unlimited Data"
+    ]
+
+    avg_rev = []
+    for service in service_columns:
+        if service in financial_df.columns:
+            rev = financial_df[financial_df[service] == "Yes"]['Revenue'].mean()
+            avg_rev.append((service, rev))
+
+    service_df = pd.DataFrame(avg_rev, columns=["Service", "Avg Revenue"]).sort_values(by="Avg Revenue", ascending=False)
+
+    fig3 = px.bar(
+        service_df,
+        x="Service",
+        y="Avg Revenue",
+        title="Average Revenue by Service",
+        color="Service",
+        text_auto='.2s'
+    )
+    fig3.update_layout(yaxis_title="Avg Revenue (USD)", yaxis_tickprefix="$", showlegend=False)
     st.plotly_chart(fig3, use_container_width=True)

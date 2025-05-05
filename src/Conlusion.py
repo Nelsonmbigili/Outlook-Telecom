@@ -4,37 +4,40 @@ st.markdown(
     """
     <div style='white-space: nowrap; overflow-x: auto;'>
         <h1 style='color: purple; display: inline-block; font-size: 2.2em; margin: 0;'>
-           📊 Project Conclusion: Telecom Customer Churn Prediction
+           Conclusion & Recommendations for OutLook Telecom 🛜
         </h1>
     </div>
     """,
     unsafe_allow_html=True)
-st.subheader("Business Advisory Based on Our Churn Prediction Results📉")
+st.subheader("Summary of Findings")
 
 st.write("""
-Through our comprehensive analysis of the telecom dataset, we discovered that **certain customer behaviors and contract attributes are strongly linked with customer churn**. 
+Our analysis of OutLook Telecom's 2024 California dataset provided valuable insights into customer behavior, churn patterns, and revenue trends. 
 
-- **Contract Type**: Customers on *month-to-month contracts* are significantly more likely to churn compared to those on longer-term contracts.
-- **Monthly Charges**: Higher charges correlate with increased churn, indicating sensitivity to pricing.
-- **Tenure**: Customers with a short tenure are more likely to leave, possibly due to poor onboarding or unmet expectations.
+Some of the key findings includes the following: 
+- **Customer Demographics**: The majority of customers are in the 30-39 age range while the Average age of customers is appx 47 years with ~47% having dependents.
+
 """)
 
-st.subheader("Model Performance Summary 🔍 ")
+st.subheader("Actionable Recommendations")
+st.write("""
+Retention Strategies
+- Personalized Offers for Short-Tenure Customers: Target customers with shorter tenures by offering tailored promotions, improving their loyalty and retention.
+- Referral Incentives: Introduce programs that reward customers for referring others, helping both with customer acquisition and increasing retention rates.
+- Fiber Optic Service Enhancements: Increase the perceived value of fiber optic services by offering bundled discounts or improving speed offerings to incentivize longer-term subscriptions.
 
-# Display model performance metrics
-st.markdown("""
-| Model                        | Accuracy | Precision (Churn) | Recall (Churn) | F1-score (Churn) |
-|-----------------------------|----------|-------------------|----------------|------------------|
-| Logistic Regression         | **0.8035** | 0.8006            | 0.8035         | 0.8018           |
-| K-Nearest Neighbors (N=5)   | **0.7656** | 0.7601            | 0.7656         | 0.7623           |
-| Decision Tree (depth=5)     | **0.8194** | 0.8377            | 0.8194         | 0.7944           |
-| Random Forest               | **0.8513** | 0.8509            | 0.8513         | 0.8426           |
-| XGBoost                     | **0.8467** | 0.8427            | 0.8467         | 0.8420           |
-""", unsafe_allow_html=True)
+Contract & Billing Optimization
+- Long-Term Contracts: Offer discounts or special promotions for customers committing to 1- or 2-year contracts, encouraging longer retention and stability.
+- Paperless Billing & Auto-Pay Promotion: Encourage customers to switch to paperless billing and auto-pay systems, minimizing friction and ensuring a smoother payment process.
 
-st.write("**Decision Tree performed best** in both accuracy and interpretability, making it ideal for churn risk analysis.")
+Competitive Pricing & Service Enhancements
+- Monitor Competitor Pricing: Regularly evaluate competitor pricing to ensure your plans remain competitive, adjusting accordingly to attract and retain customers.
+- Enhanced Customer Support: Focus on strengthening customer support, especially for high-churn segments, providing personalized, high-quality service to reduce churn.
 
-st.subheader("Strategic Recommendations")
+Data-Driven Decision Making
+- Expand Predictive Modeling: Implement predictive models to forecast customer churn in real time, allowing for proactive retention efforts.
+- Leverage Geographic Insights: Use data to identify high-churn zip codes or regions and launch targeted campaigns to address specific local issues, improving retention.
+""")
 
 st.markdown("""
 - **Bundle longer-term contracts**: Offer incentives for yearly plans to improve retention.
@@ -51,4 +54,4 @@ st.markdown("""
 -  **Improve model explainability**: Use SHAP or LIME to provide transparent model insights to business teams.
 """)
 
-st.success("This project successfully demonstrates the application of machine learning models to predict and reduce customer churn in telecom services, guiding actionable strategies based on data insights.")
+st.success("Thank you for exploring the OutLook Telecom Annual Data Review app!")
